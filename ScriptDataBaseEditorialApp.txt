@@ -1,0 +1,37 @@
+create Database EditorialDB;
+
+create table dbo.Editorial(
+	EditorialId int identity(1,1) not null,
+	EditorialName varchar(250) not null,
+	EditorialAdress varchar(250) not null,
+	EditorialPhone varchar(100) not null,
+	EditorialEmail varchar(250) not null,
+	EditorialMaxBook int not null,
+	PRIMARY KEY (EditorialId)
+)
+
+create table dbo.Author(
+	AuthorId int identity(1,1) not null,
+	AuthorFullName varchar(250) not null,
+	AuthorDateBirth date not null,
+	AuthorCity varchar(100) not null,
+	AuthorEmail varchar(250) not null,
+	PRIMARY KEY (AuthorId)
+)
+
+create table dbo.Book(
+	BookId int identity(1,1) not null,
+	BookTitle varchar(250) not null,
+	BookYear int not null,
+	BookGender varchar(100) not null,
+	BookPages varchar(250) not null,
+	BookEditorialId int not null,
+	BookAuthorId int not null,
+	PRIMARY KEY (BookId),
+	FOREIGN KEY (BookEditorialId) REFERENCES dbo.Editorial(EditorialId),
+	FOREIGN KEY (BookAuthorId) REFERENCES dbo.Author(AuthorId)
+)
+
+
+
+
